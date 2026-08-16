@@ -1,0 +1,1 @@
+export function LoyaltyMeter({ value }: { value: number }) { return <div className="card"><b>Loyalty confidence: {value}%</b><div style={{height:10,background:"#eee",marginTop:12}}><div style={{height:"100%",width:`${value}%`,background:"var(--accent)"}} /></div></div>; }

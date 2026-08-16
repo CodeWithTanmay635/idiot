@@ -1,0 +1,2 @@
+"use client"; import { useState } from "react"; import { photos } from "@/data/photos"; import type { Photo } from "@/types/photo"; import { MemeGrid } from "@/components/photos/MemeGrid"; import { MemeViewer } from "@/components/photos/MemeViewer";
+export default function PhotosPage() { const [selected,setSelected]=useState<Photo|null>(null); return <main><h1>Photos</h1><p className="muted">The documented evidence.</p><MemeGrid photos={photos} onOpen={setSelected}/><MemeViewer photo={selected} onClose={()=>setSelected(null)}/></main>; }

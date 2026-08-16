@@ -1,0 +1,2 @@
+"use client"; import { useRef, useState } from "react";
+export function AudioController({ src }: { src:string }) { const audio=useRef<HTMLAudioElement>(null); const [playing,setPlaying]=useState(false); const toggle=()=>{if (!audio.current) return; playing ? audio.current.pause() : audio.current.play(); setPlaying(!playing);}; return <><audio ref={audio} src={src}/><button onClick={toggle} aria-label="Toggle audio">{playing ? "Pause audio" : "Play audio"}</button></>; }

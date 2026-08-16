@@ -1,0 +1,1 @@
+export function HiddenObject({ found, onFind }: { found:boolean; onFind:()=>void }) { return <button onClick={onFind} disabled={found} className="card">{found ? "Key found" : "Search here"}</button>; }

@@ -1,0 +1,1 @@
+export function Door({ canOpen, onOpen }: { canOpen:boolean; onOpen:()=>void }) { return <button className="card" disabled={!canOpen} onClick={onOpen}>{canOpen ? "Open the door" : "Door locked"}</button>; }

@@ -1,0 +1,1 @@
+export function LoveStats({ incidents }: { incidents: number }) { return <div className="card"><span className="pill">Stats</span><h3>{incidents} documented incident{incidents === 1 ? "" : "s"}</h3></div>; }
