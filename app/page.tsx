@@ -1,3 +1,9 @@
 import { Hero } from "@/components/home/Hero";
-import { SubjectIntro } from "@/components/home/SubjectIntro";
-export default function Home() { return <main><Hero /><SubjectIntro /></main>; }
+
+export default function Home() {
+  return (
+    <main style={{ padding: 0, maxWidth: "none", margin: 0 }}>
+      <Hero />
+    </main>
+  );
+}
