@@ -1,11 +1,11 @@
-export type Clip = {
+export type PoliticalExhibit = {
   id: string;
   title: string;
   subtitle?: string;
-  description: string;
+  detail: string;
   src?: string;
-  thumbnail?: string;
   aspect?: "portrait" | "landscape" | "square";
   objectPosition?: string;
+  allegiance?: string;
   date?: string;
 };

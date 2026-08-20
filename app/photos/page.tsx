@@ -1,2 +1,13 @@
-"use client"; import { useState } from "react"; import { photos } from "@/data/photos"; import type { Photo } from "@/types/photo"; import { MemeGrid } from "@/components/photos/MemeGrid"; import { MemeViewer } from "@/components/photos/MemeViewer";
-export default function PhotosPage() { const [selected,setSelected]=useState<Photo|null>(null); return <main><h1>Photos</h1><p className="muted">The documented evidence.</p><MemeGrid photos={photos} onOpen={setSelected}/><MemeViewer photo={selected} onClose={()=>setSelected(null)}/></main>; }
+import type { Metadata } from "next";
+import { photos } from "@/data/photos";
+import { PhotoArchive } from "@/components/photos/PhotoArchive";
+
+export const metadata: Metadata = {
+  title: "Photographic Evidence — Idot Archive",
+  description:
+    "A very expensive experimental photography archive was created to document this man's existence. Unfortunately, every photograph is a meme.",
+};
+
+export default function PhotosPage() {
+  return <PhotoArchive photos={photos} />;
+}

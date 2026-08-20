@@ -11,7 +11,7 @@ import styles from "./Hero.module.css";
   3 → 750ms  THE SUBJECT + name
   4 → 1050ms description
   5 → 1280ms status
-  6 → 1500ms CTA
+  6 → 1500ms CTA & scroll prompt
 */
 const DELAYS = [80, 500, 750, 1050, 1280, 1500];
 
@@ -30,7 +30,7 @@ export function Hero() {
 
   // Custom cursor — fine pointer devices only
   useEffect(() => {
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    if (typeof window === "undefined" || window.matchMedia("(pointer: coarse)").matches) return;
     const move = (e: MouseEvent) => {
       if (cursorRef.current)
         cursorRef.current.style.transform = `translate(${e.clientX}px,${e.clientY}px)`;
@@ -38,6 +38,13 @@ export function Hero() {
     window.addEventListener("mousemove", move, { passive: true });
     return () => window.removeEventListener("mousemove", move);
   }, []);
+
+  const scrollToDossier = () => {
+    const el = document.getElementById("archive-dossier");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const cx = (...c: (string | false | undefined)[]) =>
     c.filter(Boolean).join(" ");
@@ -51,11 +58,11 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      <section className={styles.hero} aria-label="Subject archive">
+      <section className={styles.hero} aria-label="Subject archive hero">
 
         {/* ── FULL-BLEED PHOTO ──────────────────────────────────
             Photo fills 100vw × 100vh. Gradients layer on top.
-            The photo is always fully visible beneath gradients.     */}
+            Edge gradients eliminate white borders from the source image.  */}
         <div
           className={cx(styles.photo, phase >= 1 && styles.photoIn)}
           aria-hidden="true"
@@ -67,11 +74,13 @@ export function Hero() {
             className={cx(styles.img, phase >= 1 && styles.imgSettled)}
           />
 
-          {/* Gradient 1 — bottom fade: makes lower-left text readable */}
+          {/* Gradient 1 — left/right side mask: completely dissolves white image edges */}
+          <div className={styles.gSides} />
+          {/* Gradient 2 — bottom fade: makes lower text readable and fades to black for scroll */}
           <div className={styles.gBottom} />
-          {/* Gradient 2 — top vignette: subtle header zone */}
+          {/* Gradient 3 — top vignette: subtle header zone */}
           <div className={styles.gTop} />
-          {/* Gradient 3 — gentle overall cinematic tint */}
+          {/* Gradient 4 — gentle overall cinematic vignette */}
           <div className={styles.gDim} />
         </div>
 
@@ -87,7 +96,7 @@ export function Hero() {
 
           <button
             className={styles.menuBtn}
-            onClick={() => setMenuOpen(v => !v)}
+            onClick={() => setMenuOpen((v) => !v)}
             aria-label="Toggle navigation"
             aria-expanded={menuOpen}
             onMouseEnter={() => setCursorHover(true)}
@@ -95,7 +104,9 @@ export function Hero() {
           >
             <span className={styles.menuLabel}>MENU</span>
             <span className={styles.burger} data-open={menuOpen}>
-              <span /><span /><span />
+              <span />
+              <span />
+              <span />
             </span>
           </button>
         </header>
@@ -106,17 +117,16 @@ export function Hero() {
           aria-hidden={!menuOpen}
         >
           {[
-            ["Photos",    "/photos"],
-            ["Clips",     "/clips"],
+            ["Photos", "/photos"],
+            ["Clips", "/clips"],
+            ["Politics", "/political-affiliation"],
             ["Love Life", "/love-life"],
-            ["Politics",  "/political-affiliation"],
-            ["Chat",      "/chat"],
           ].map(([label, href], i) => (
             <Link
               key={href}
               href={href}
               className={styles.drawerLink}
-              style={{ transitionDelay: menuOpen ? `${i * 60}ms` : "0ms" }}
+              style={{ transitionDelay: menuOpen ? `${i * 50}ms` : "0ms" }}
               onClick={() => setMenuOpen(false)}
               onMouseEnter={() => setCursorHover(true)}
               onMouseLeave={() => setCursorHover(false)}
@@ -142,9 +152,7 @@ export function Hero() {
           <div className={cx(styles.desc, phase >= 4 && styles.descIn)}>
             <span className={styles.rule} />
             <p className={styles.descMain}>
-              A brief documentation of the man,<br />
-              the myths, the memes and the<br />
-              questionable decisions.
+              A brief documentation of the man, the myths, the memes and the questionable decisions.
             </p>
             <p className={styles.descSub}>
               Compiled by people who unfortunately know him.
@@ -153,7 +161,14 @@ export function Hero() {
 
           {/* Status */}
           <dl className={cx(styles.status, phase >= 5 && styles.statusIn)}>
-            {([ ["STATUS","Alive"], ["AGE","20"], ["LOCATION","Bedroom"], ["DOCUMENT","2026"] ] as const).map(([k,v]) => (
+            {(
+              [
+                ["STATUS", "Alive"],
+                ["AGE", "20"],
+                ["LOCATION", "Bedroom"],
+                ["DOCUMENT", "2026"],
+              ] as const
+            ).map(([k, v]) => (
               <div key={k} className={styles.statusRow}>
                 <dt className={styles.statusKey}>{k}</dt>
                 <dd className={styles.statusVal}>{v}</dd>
@@ -161,7 +176,7 @@ export function Hero() {
             ))}
           </dl>
 
-          {/* CTA */}
+          {/* CTA & Scroll Actions */}
           <div className={cx(styles.ctaWrap, phase >= 6 && styles.ctaIn)}>
             <Link
               href="/photos"
@@ -173,6 +188,17 @@ export function Hero() {
               <span className={styles.ctaLabel}>SEE WHAT WE FOUND</span>
               <span className={styles.ctaArrow}>→</span>
             </Link>
+
+            <button
+              onClick={scrollToDossier}
+              className={styles.scrollBtn}
+              aria-label="Scroll to case files"
+              onMouseEnter={() => setCursorHover(true)}
+              onMouseLeave={() => setCursorHover(false)}
+            >
+              <span className={styles.scrollText}>EXPLORE CASE FILES</span>
+              <span className={styles.scrollArrow}>↓</span>
+            </button>
           </div>
         </div>
 

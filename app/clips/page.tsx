@@ -1,2 +1,6 @@
-"use client"; import { useState } from "react"; import { clips } from "@/data/clips"; import type { Clip } from "@/types/clip"; import { ClipGrid } from "@/components/clips/ClipGrid"; import { VideoPlayer } from "@/components/clips/VideoPlayer";
-export default function ClipsPage() { const [selected,setSelected]=useState<Clip|null>(null); return <main><h1>Clips</h1><p className="muted">Moving evidence.</p><ClipGrid clips={clips} onPlay={setSelected}/><VideoPlayer clip={selected} onClose={()=>setSelected(null)} /></main>; }
+import { clips } from "@/data/clips";
+import { ClipArchive } from "@/components/clips/ClipArchive";
+
+export default function ClipsPage() {
+  return <ClipArchive clips={clips} />;
+}

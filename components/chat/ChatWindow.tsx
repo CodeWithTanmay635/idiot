@@ -1,2 +1,0 @@
-"use client"; import { useState } from "react"; import type { ChatReply } from "@/types/chat"; import { QuestionList } from "./QuestionList"; import { ReplyBubble } from "./ReplyBubble";
-export function ChatWindow({ replies }: { replies: ChatReply[] }) { const [reply,setReply]=useState<ChatReply|null>(null); return <><QuestionList replies={replies} onSelect={setReply}/>{reply && <div style={{marginTop:24}}><ReplyBubble text={reply.answer}/></div>}</>; }

@@ -1,0 +1,160 @@
+/* ══════════════════════════════════════════════════════════════
+   GLOBAL NAVIGATION — Dark editorial header for inner archive pages
+   Strict 3-font lock:
+   - Bebas Neue: .brandTitle
+   - Inter: .linkLabel
+   - Space Mono: .brandNum, .brandSep, .linkNum, .metaText
+   ══════════════════════════════════════════════════════════════ */
+
+.navBar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 36px;
+  background: rgba(2, 2, 2, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.brandNum {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+}
+
+.brandSep {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.brandTitle {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+/* Links */
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.navLinks::-webkit-scrollbar {
+  display: none;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  padding: 6px 4px;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.linkNum {
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.25);
+  transition: color 0.2s ease;
+}
+
+.linkLabel {
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.link:hover .linkLabel {
+  color: #ffffff;
+}
+
+.link:hover .linkNum {
+  color: var(--accent);
+}
+
+.linkActive .linkLabel {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.linkActive .linkNum {
+  color: var(--accent);
+}
+
+.linkActive::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 4px;
+  right: 4px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
+/* Meta Box */
+.metaBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.metaDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+.metaText {
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .navBar {
+    padding: 14px 20px;
+  }
+  .metaBox {
+    display: none;
+  }
+  .navLinks {
+    gap: 14px;
+  }
+}
