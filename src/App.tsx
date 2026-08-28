@@ -276,7 +276,7 @@ export default function App() {
                         </span>
                       </div>
                       <p style={{ fontFamily: VT, fontSize: "22px", lineHeight: 1.4, color: "#9E9E9E", margin: 0 }}>
-                        A brief documentation of the man, the myths, the memes and the questionable decisions.{" "}
+                        A brief documentation of the man, the myths, The memes and known for questionable decision making.{" "}
                         <span style={{ color: "#555555" }}>Compiled by people who unfortunately know him.</span>
                       </p>
                     </div>
@@ -372,7 +372,7 @@ export default function App() {
                 className="animate-fade-up delay-600"
                 style={{ fontFamily: VT, fontSize: "22px", lineHeight: 1.4, color: "#9E9E9E", margin: "0 0 20px" }}
               >
-                A brief documentation of the man, the myths, the memes and the questionable decisions.{" "}
+                A brief documentation of the man, the myths, The memes and known for questionable decision making.{" "}
                 <span style={{ color: "#555555" }}>Compiled by people who unfortunately know him.</span>
               </p>
 
