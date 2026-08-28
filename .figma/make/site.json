@@ -1,0 +1,10 @@
+{
+  "description": "This unique birthday website serves as a humorous digital archive, showcasing a friend's life through a premium, cinematic design that blends sarcasm with elegance.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
