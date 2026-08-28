@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import heroPhoto from "@/imports/ChatGPT_Image_Aug_28__2026__07_30_24_PM.png";
+import heroPhoto from "@/imports/hero_you_died.jpg";
 import SubjectProfile from "./pages/SubjectProfile";
 import TheVerdict from "./pages/TheVerdict";
 import PhotosPage from "./pages/PhotosPage";
